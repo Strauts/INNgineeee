@@ -308,7 +308,7 @@ void CollisionSystem::checkSphereInsideMesh(SphereColliderComponent& s1, MeshCol
         gsl::Vec3 sitPoint1 = sphereCenter - gsl::Vec3(0, 1, 0) * pdistance + faceNormal*s1.radius;
         gsl::Vec3 sitPoint2 = sphereCenter + faceNormal*coef;
 
-        std::cout << "Distance from center to triangle is: " << distance << std::endl;
+        std::cout << "Vertex: " << facePosition << std::endl;
 
         // Ball is on other side of triangle...
         if(pdistance < 0)

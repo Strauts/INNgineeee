@@ -34,7 +34,7 @@ void ControlledBallScriptComponent::update(GLfloat deltaTime)
     gsl::Vec3 camera_right = gsl::Vec3(viewMatrix(0, 0), viewMatrix(0, 1), viewMatrix(0, 2));
     gsl::Vec3 camera_fwd = (camera_right ^ gsl::Vec3(0, 1, 0)).normalized();
 
-    gsl::Vec3 acceleration = (camera_right * i->mRight + camera_fwd * i->mForward)*1600*deltaTime;
+    gsl::Vec3 acceleration = (camera_right * i->mRight + camera_fwd * i->mForward)*1000*deltaTime;
 
     if(sc->touching)
         r->addForce(acceleration*r->mass);
