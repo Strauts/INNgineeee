@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/icons8-diamond-100.png</file>
+        <file>icons/icons8-diamond-filled-100.png</file>
+        <file>icons/coordinate-system.png</file>
+        <file>icons/coordinate-system-invert.png</file>
+        <file>icons/INNgine_splash.png</file>
+    </qresource>
+</RCC>
