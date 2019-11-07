@@ -20,6 +20,8 @@ class Shader;
 class Texture;
 class PointLight;
 class DirectionalLight;
+class NPC;
+class BallSystem;
 
 class ECSManager
 {
@@ -33,6 +35,9 @@ class ECSManager
         void runScriptSystem(GLfloat deltaTime);
         void runPhysicsSystem(GLfloat deltaTime);
         void runCameraSystem();
+        void runNPCSystem(GLfloat deltaTime);
+        void runBallSystem();
+        void runApplyPhysics(GLfloat deltaTime);
 
         Entity* makeEntity(std::string entityName);
         Entity* makeEntity(std::string entityName, std::string meshName, gsl::ShaderTypes shader);
@@ -55,6 +60,8 @@ class ECSManager
         std::vector<CapsuleColliderComponent> mCapsuleColliderComponents;
         std::vector<MeshColliderComponent> mMeshColliderComponents;
         std::vector<CameraComponent> mCameraComponents;
+        std::vector<TrophyColliderComponent> mTrophyColliderComponents;
+        std::vector<NPCComponent> mNPCComponents;
 
         RenderSystem *mRenderSystem{nullptr};
         InputSystem *mInputSystem{nullptr};
@@ -64,6 +71,8 @@ class ECSManager
         ScriptSystem *mScriptSystem{nullptr};
         PhysicsSystem* mPhysicsSystem{nullptr};
         CameraSystem* mCameraSystem{nullptr};
+        BallSystem* mBallSystem{nullptr};
+        NPC* mNPCSystem{nullptr};
 
         //Other resources:
         Shader *mShaders[4]{nullptr};

@@ -24,6 +24,8 @@ class MeshBase : protected QOpenGLFunctions_4_1_Core
         static gsl::Vec3 centerFromTriangle(int triangleIndex, Triangle *triangles, Vertex *vertices);
         void printMeshData();
 
+        int findTriangleIndexFromWorldPosition(int triangleIndex, Vec3 worldPos, Mat4&terrainMat, Triangle *triangles, Vertex *vertices);
+
         Vertex* vertices() const;
         GLint* indices() const;
         std::string getFilePath() const {return mFilePath;}

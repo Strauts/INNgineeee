@@ -20,12 +20,14 @@ void CollisionSystem::checkCollisions()
     size_t numCyllinderColliderComponents = mManager->mCyllinderColliderComponents.size();
     size_t numCapsuleColliderComponents = mManager->mCapsuleColliderComponents.size();
     size_t numMeshColliderComponents = mManager->mMeshColliderComponents.size();
+    size_t numTrophyColliderComponents = mManager->mTrophyColliderComponents.size();
 
     std::vector<BoxColliderComponent>& mBoxColliderComponents = mManager->mBoxColliderComponents;
     std::vector<SphereColliderComponent>& mSphereColliderComponents = mManager->mSphereColliderComponents;
     std::vector<CyllinderColliderComponent>& mCyllinderColliderComponents = mManager->mCyllinderColliderComponents;
     std::vector<CapsuleColliderComponent>& mCapsuleColliderComponents = mManager->mCapsuleColliderComponents;
     std::vector<MeshColliderComponent>& mMeshColliderComponents = mManager->mMeshColliderComponents;
+    std::vector<TrophyColliderComponent>& mTrophyColliderComponents = mManager->mTrophyColliderComponents;
 
     size_t i, j;
     // BoxColliderComponents
@@ -289,7 +291,7 @@ void CollisionSystem::checkSphereInsideMesh(SphereColliderComponent& s1, MeshCol
     // Here we know which triangle we are in
     if(index != -1)
     {
-        std::cout << "We found triangle: " << index << std::endl;
+        //std::cout << "We found triangle: " << index << std::endl;
         // check if the distance to the triangle plane from the center
         // is less than the radius, the the distance is negative, the sphere
         // is on the other side of the plane
@@ -297,7 +299,7 @@ void CollisionSystem::checkSphereInsideMesh(SphereColliderComponent& s1, MeshCol
         gsl::Vec3 faceNormal = MeshBase::normalFromTriangle(index, m2.triangles, vertices);
         gsl::Vec3 facePosition = MeshBase::centerFromTriangle(index, m2.triangles, vertices);
 
-        std::cout << "FaceNormal: {" << faceNormal << "} " << std::endl;
+        //std::cout << "FaceNormal: {" << faceNormal << "} " << std::endl;
 
         // Distance from center to plane along up axis is
         float pdistance = (localPos - facePosition)*gsl::Vec3(0, 1, 0);
@@ -308,7 +310,7 @@ void CollisionSystem::checkSphereInsideMesh(SphereColliderComponent& s1, MeshCol
         gsl::Vec3 sitPoint1 = sphereCenter - gsl::Vec3(0, 1, 0) * pdistance + faceNormal*s1.radius;
         gsl::Vec3 sitPoint2 = sphereCenter + faceNormal*coef;
 
-        std::cout << "Vertex: " << facePosition << std::endl;
+        //std::cout << "Vertex: " << facePosition << std::endl;
 
         // Ball is on other side of triangle...
         if(pdistance < 0)

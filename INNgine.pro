@@ -40,6 +40,9 @@ INCLUDEPATH +=  ./GSL \
 #}
 
 SOURCES += main.cpp \
+    ECS/Systems/ballsystem.cpp \
+    ECS/Systems/npc.cpp \
+    GSL/bspline.cpp \
     renderwindow.cpp \
     Resources/shader.cpp \
     Editor/mainwindow.cpp \
@@ -90,6 +93,9 @@ SOURCES += main.cpp \
     directionallight.cpp
 
 HEADERS += \
+    ECS/Systems/ballsystem.h \
+    ECS/Systems/npc.h \
+    GSL/bspline.h \
     renderwindow.h \
     Resources/shader.h \
     Editor/mainwindow.h \

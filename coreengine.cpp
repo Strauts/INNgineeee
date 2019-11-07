@@ -77,6 +77,43 @@ void CoreEngine::makeInitialEntities()
     mcc.triangles = mcc.mData->mTriangles;
     mcc.numTriangles = mcc.mData->mNumberOfTriangles;
     mECSManager->mMeshColliderComponents.push_back(mcc);
+
+    //Creating trophies with boxColliderComponent
+    temp = mECSManager->makeEntity("1st_Throphy", "cube", gsl::COLOR);
+    temp->getTransform().setPosition(35, 248, 90);
+    BoxColliderComponent trophy1;
+    trophy1.bSpline = true;
+    trophy1.ownerEntityID = temp->mEntityID;
+    mECSManager->mBoxColliderComponents.push_back(trophy1);
+
+    temp = mECSManager->makeEntity("2nd_Throphy", "cube", gsl::COLOR);
+    temp->getTransform().setPosition(50, 245, 90);
+    BoxColliderComponent trophy2;
+    trophy2.bSpline = true;
+    trophy2.ownerEntityID = temp->mEntityID;
+    mECSManager->mBoxColliderComponents.push_back(trophy2);
+
+    temp = mECSManager->makeEntity("3rd_Throphy", "cube", gsl::COLOR);
+    temp->getTransform().setPosition(50, 245, 65);
+    BoxColliderComponent trophy3;
+    trophy3.bSpline = true;
+    trophy3.ownerEntityID = temp->mEntityID;
+    mECSManager->mBoxColliderComponents.push_back(trophy3);
+
+    temp = mECSManager->makeEntity("4th_Throphy", "cube", gsl::COLOR);
+    temp->getTransform().setPosition(15, 255, 90);
+    BoxColliderComponent trophy4;
+    trophy4.bSpline = true;
+    trophy4.ownerEntityID = temp->mEntityID;
+    mECSManager->mBoxColliderComponents.push_back(trophy4);
+
+    //Creating NPC and attaching NPC Component
+    temp = mECSManager->makeEntity("NPC", "sphere", gsl::COLOR);
+    NPCComponent npc;
+    npc.ownerEntityID = temp->mEntityID;
+    npc.mData = npc.getFirstMeshComponent()->mData;
+    mECSManager->mNPCComponents.push_back(npc);
+
 }
 
 //The main game loop for the whole program
@@ -94,6 +131,9 @@ void CoreEngine::timerEvent(QTimerEvent *)
     mECSManager->runCollisionSystem();
     mECSManager->runScriptSystem(mDeltaTime);
     mECSManager->runPhysicsSystem(mDeltaTime);
+    mECSManager->runBallSystem();
+    mECSManager->runApplyPhysics(mDeltaTime);
+    mECSManager->runNPCSystem(mDeltaTime);
 
     float intersection_distance;
     if (mRenderWindow->mMousePickerOn)

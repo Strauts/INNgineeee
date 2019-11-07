@@ -20,6 +20,8 @@
 #include "physicssystem.h"
 #include "camerasystem.h"
 #include <cassert>
+#include "npc.h"
+#include "ballsystem.h"
 
 
 ECSManager* ECSManager::mInstance = nullptr;
@@ -36,6 +38,8 @@ ECSManager::ECSManager(RenderWindow *renderWindow) : mRenderWindow{renderWindow}
     mPhysicsSystem = new PhysicsSystem();
     mCameraSystem = new CameraSystem(renderWindow);
     mMeshFactory = new MeshFactory;
+    mNPCSystem = new NPC();
+    mBallSystem = new BallSystem();
 
     //Compile shaders:
     makeShaders();
@@ -86,6 +90,21 @@ void ECSManager::runPhysicsSystem(GLfloat deltaTime)
 void ECSManager::runCameraSystem()
 {
     mCameraSystem->update();
+}
+
+void ECSManager::runBallSystem()
+{
+    mBallSystem->checkCollision();
+}
+
+void ECSManager::runNPCSystem(GLfloat deltaTime)
+{
+    mNPCSystem->patrol(deltaTime);
+}
+
+void ECSManager::runApplyPhysics(GLfloat deltaTime)
+{
+    mBallSystem->applyPhysics(deltaTime);
 }
 
 Entity* ECSManager::makeEntity(std::string entityName)

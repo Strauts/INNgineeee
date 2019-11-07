@@ -27,6 +27,7 @@ public:
     void checkCyllinderInsideSphere(CyllinderColliderComponent c1, SphereColliderComponent s2);
     void checkCapsuleInsideSphere(CapsuleColliderComponent c1, SphereColliderComponent s2);
     void checkSphereInsideMesh(SphereColliderComponent &s1, MeshColliderComponent m2);
+    void checkSphereInsideTrophy(SphereColliderComponent &s1, TrophyColliderComponent t2);
 
     // Objects colliding with Cyllinder
     void checkCyllinderInsideCyllinder(CyllinderColliderComponent c1, CyllinderColliderComponent c2);
